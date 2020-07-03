@@ -1,6 +1,7 @@
 <?php
 
 class DB{
+    public $table;
     public static function conect(){
         require_once '../App/config.php';
         $ty = new PDO("mysql:host=". $DB['HOST'] .';port='. $DB['PORT'] .';dbname='.$DB['NAME'], $DB['USER'], $DB['PASSWORD']);
@@ -19,5 +20,6 @@ class DB{
         }
        
     }
+
 }                     
 ?>      

@@ -27,7 +27,6 @@
 <br>
 <?php
     require_once "../App/router/Router.php";
-
 ?>
 <script src="asset/js/jquery.3.js"></script>
 <script src="asset/js/bootstrap.min.js"></script>

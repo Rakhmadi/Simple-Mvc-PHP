@@ -6,9 +6,8 @@ class View{
            require_once "../App/view/".$view.".php";
                   
     }  
-    public static function goto($n){
-        header( "Location:{$n}" );
-    }
+    
+
 }
 
 ?>

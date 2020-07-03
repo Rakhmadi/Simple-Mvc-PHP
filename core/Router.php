@@ -3,7 +3,6 @@ require_once 'View.php';
 class Route{
     public static $validrout ;
     private static $y;
-
     public static function add_api($route,$function){
         self::$validrout[]=" " . $route;
         self::$y=parse_url($_SERVER['REQUEST_URI']);
@@ -12,11 +11,12 @@ class Route{
           }
     }
 
-    public static function add($route,$function){
+    public static function add($route,$function,$meth = null){        
         self::$validrout[]=" " . $route;
         self::$y=parse_url($_SERVER['REQUEST_URI']);
         if (self::$y["path"] == $route) {
-            $function -> __invoke();
+            return $function -> __invoke();
+            $meth;
           }
     }
 
@@ -31,9 +31,16 @@ class Route{
         header( "Location: /404.php" );
     }
     }
-    public static function goto($n){
+    public static function goto($n,$t=null){
         header( "Location: {$n}" );
     }
 }
-
+     function req($reg){
+         $yg = $_SERVER["REQUEST_METHOD"];
+         if ( $yg == $reg) {
+         }else{
+           Route::goto("/meth.php?err={$yg}&errs={$reg}");
+         }
+         return ;
+     }
 ?>

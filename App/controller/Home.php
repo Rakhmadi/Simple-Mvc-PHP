@@ -11,7 +11,7 @@ class Home{
         $class =$_POST['class'];     
         DB::query("INSERT INTO `siswa` (`id`, `name`, `class`, `created`) 
         VALUES (NULL, '{$name}', '{$class}', '{$now}')");
-        Route::goto('/');       
+        Route::goto('/');
     }
     public static function delete(){
         $id=$_GET['id'];
@@ -21,7 +21,7 @@ class Home{
          Route::goto('/'); 
     }
     public static function editshow(){
-        $id=$_GET['id'];
+        $id=$_GET['id'];    
         $e = DB::query("SELECT * FROM siswa WHERE id=:id",[
             ':id'=>$id
         ]);
