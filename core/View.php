@@ -6,8 +6,5 @@ class View{
            require_once "../App/view/".$view.".php";
                   
     }  
-    
-
 }
-
 ?>
