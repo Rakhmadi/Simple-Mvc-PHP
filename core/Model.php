@@ -69,7 +69,7 @@ class Model{
       $this->lim =" LIMIT $val  ";
       return $this;
     }
-    public function insert($s=[]){
+    public function Insert($s=[]){
       function sd($t){
         return "`$t` ";
       }
@@ -77,15 +77,25 @@ class Model{
       $tables = implode(', ',$n);
 
       function dv($num){
-          return(" :" . $num);
-        }
+        return(" :" . $num);
+      }
        
-       $h =array_map("dv",$this->requirefield);
-       $vals =  implode(",",$h);
+      $h =array_map("dv",$this->requirefield);
+      $vals =  implode(",",$h);
 
-       $this->inserts="INSERT INTO `".$this->table ."` ($tables) VALUES($vals)  $this->wheres";
-       DB::query($this->inserts,$s);
+      $this->inserts="INSERT INTO `".$this->table ."` ($tables) VALUES($vals)  $this->wheres";
+      return DB::query($this->inserts.$this->wheres,$s);
     
+    }
+    public function Update($g=[]){
+      function sds($t){
+        return "$t=:$t ";
+      }
+      $y= array_keys($g);
+      $n=array_map('sds',$y);
+      $tables = implode(', ',$n);
+      echo $this->updates="UPDATE ". $this->table ." SET " . $tables . $this->wheres;
+      return DB::query($this->updates,$g);
     }
     public function save(){
 

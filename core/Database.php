@@ -1,5 +1,4 @@
 <?php
-
 class DB{
     public $table;
     public static function conect(){
@@ -18,8 +17,6 @@ class DB{
         }else{
             return  $t;
         }
-       
     }
-
 }                     
 ?>      

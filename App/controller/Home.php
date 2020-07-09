@@ -5,7 +5,8 @@ class Home{
     public static function show(){
         $n=new siswa();
         $y=$n->show()->OrderBy('id','DESC')->do();
-       // $y= DB::query("SELECT * FROM siswa "); 
+       // $y= DB::query("SELECT * FROM siswa ");
+      
         View::make('Home',$y);
     }
     public static function add(){
@@ -13,12 +14,13 @@ class Home{
         $name =$_POST['name'];
         $class =$_POST['class'];     
         $ns=new siswa();
-        $ns->insert([
+        $ns->Insert([
             'id'=>NULL,
             'name'=>$name,
             'class'=>$class,
             'created'=>$now
         ]);
+        
         Route::goto('/');
     }
     public static function delete(){
@@ -40,11 +42,12 @@ class Home{
         $name =$_POST['name'];
         $class =$_POST['class']; 
         $id=$_GET['id'];
-        DB::query("UPDATE  `siswa` set `name`=:name,`class`=:class,`created`=:created WHERE `id`=:id",[
-        ':id'=>$id,
-        ':name'=>$name,
-        ':class'=>$class,
-        ':created'=>$now
+        $d=new siswa();
+        $d->where('id',$id)->Update([
+            
+            'name'=>$name,
+            'class'=>$class,
+            
         ]);
         Route::goto('/');   
     }
