@@ -29,6 +29,17 @@
     require_once "../App/router/Router.php";
     
 ?>
+<?php
+function myfunction($num)
+{
+  return(":" . $num);
+}
+
+$a=['asd','fdsf'];
+$h =array_map("myfunction",$a);
+echo implode(",",$h);
+?>
+
 <script src="asset/js/jquery.3.js"></script>
 <script src="asset/js/bootstrap.min.js"></script>
 

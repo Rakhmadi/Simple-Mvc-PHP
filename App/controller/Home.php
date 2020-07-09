@@ -1,16 +1,24 @@
 <?php
 require_once '../core/View.php';
+require_once '../App/Model/siswa.php';
 class Home{
     public static function show(){
-        $y= DB::query("SELECT * FROM siswa ");
+        $n=new siswa();
+        $y=$n->show()->OrderBy('id','DESC')->do();
+       // $y= DB::query("SELECT * FROM siswa "); 
         View::make('Home',$y);
     }
     public static function add(){
         $now=date("Y-m-d H:i:s"); 
         $name =$_POST['name'];
         $class =$_POST['class'];     
-        DB::query("INSERT INTO `siswa` (`id`, `name`, `class`, `created`) 
-        VALUES (NULL, '{$name}', '{$class}', '{$now}')");
+        $ns=new siswa();
+        $ns->insert([
+            'id'=>NULL,
+            'name'=>$name,
+            'class'=>$class,
+            'created'=>$now
+        ]);
         Route::goto('/');
     }
     public static function delete(){
