@@ -33,7 +33,13 @@ class Model{
         return $this;      
     }
     public function where($t,$f='',$like=''){
-        $this->wheres = " WHERE $t = '$f' $like"; 
+        if ($f) {
+         $gy='=$f';
+        }
+        else {
+          $gy='';
+        }
+        $this->wheres = " WHERE $t $gy $like"; 
         return $this;
     }
     public function OrderBy($ex,$sh=''){
@@ -85,7 +91,10 @@ class Model{
 
       $this->inserts="INSERT INTO `".$this->table ."` ($tables) VALUES($vals)  $this->wheres";
       return DB::query($this->inserts.$this->wheres,$s);
-    
+
+    }
+    public function Delete($d=[]){
+      return DB::query("DELETE FROM $this->table $this->wheres",$d);
     }
     public function Update($g=[]){
       function sds($t){
@@ -120,5 +129,4 @@ class Model{
        return DB::query($r);
     }
   }
- 
 ?>

@@ -6,7 +6,6 @@ class Home{
         $n=new siswa();
         $y=$n->show()->OrderBy('id','DESC')->do();
        // $y= DB::query("SELECT * FROM siswa ");
-      
         View::make('Home',$y);
     }
     public static function add(){
@@ -25,9 +24,11 @@ class Home{
     }
     public static function delete(){
         $id=$_GET['id'];
-         DB::query("DELETE FROM siswa WHERE id=:id",[
-             ':id'=>$id
-             ]);
+        $g=new siswa();
+        $g->where('id=:idf')->Delete([
+            'idf'=>$id
+        ]);
+        
          Route::goto('/'); 
     }
     public static function editshow(){
@@ -44,10 +45,8 @@ class Home{
         $id=$_GET['id'];
         $d=new siswa();
         $d->where('id',$id)->Update([
-            
             'name'=>$name,
             'class'=>$class,
-            
         ]);
         Route::goto('/');   
     }
